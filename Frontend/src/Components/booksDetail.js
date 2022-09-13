@@ -7,7 +7,7 @@ const BooksDetail = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:5000/aliens/")
+    axios.get("http://localhost:5000/books/")
     .then(response => {
       setDetail(response?.data);
     });
