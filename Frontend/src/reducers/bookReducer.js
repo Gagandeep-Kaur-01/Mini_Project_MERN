@@ -1,10 +1,17 @@
-export default (state, action) => {
+import { bookConstant } from "../constants"
+
+const initialState = {
+    bookDetail: []
+}
+
+export const book = (state = initialState, action) => {
     switch(action.type){
-        case "GET_BOOK_DETAIL":
+        case bookConstant.GET_ALL_BOOK_DETAIL:
             return {
-                bookDetail: action.payload 
+                ...state,
+                bookDetail: action.response 
             };
         default: 
           return state;    
     }
-}
+};
