@@ -1,0 +1,58 @@
+Question 1. What is isMounted?
+Answer: The primary use case for isMounted() is to avoid calling setState() after a component has unmounted, because calling setState() after a component has unmounted will emit a warning. The “setState warning” exists to help you catch bugs, because calling setState() on an unmounted component is an indication that your app/component has somehow failed to clean up properly.
+Question 2. ismounted is an antipattern ?
+isMounted()) { setState(...) } is an antipattern in general. It can lead to the supression of useful warnings, and so its appearance should be treated with suspicion since, in the majority of cases, it represents an opportunity to mask real issues.
+
+Question 3.What is unmount
+Unmounting. The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it. React has only one built-in method that gets called when a component is unmounted 
+
+Question 4.super in constructor and props
+super() is used to call the parent constructor. super(props) would pass props to the parent constructor. From your example, super(props) would call the React. Component constructor passing in props as the argument.
+Question 5. diff. between initial state and constructor
+The big difference is start from where they are coming from, so constructor is the constructor of your class in JavaScript, on the other side, getInitialState is part of the lifecycle of React . The constructor method is a special method for creating and initializing an object created with a class.
+Question 6.react.props.arrayof
+To run typechecking on the props for a component
+Question 7 Explain about Redux flow
+Redux follows the unidirectional data flow. It means that your application data will follow in one-way binding data flow. As the application grows & becomes complex, it is hard to reproduce issues and add new features if you have no control over the state of your application.
+  
+
+An action is dispatched when a user interacts with the application.
+The root reducer function is called with the current state and the dispatched action. The root reducer may divide the task among smaller reducer functions, which ultimately returns a new state.
+The store notifies the view by executing their callback functions.
+The view can retrieve updated state and re-render again.
+
+Question 8. pointer events in react
+The following event types are now available in React DOM:
+onPointerDown
+onPointerMove
+onPointerUp
+onPointerCancel
+onGotPointerCapture
+onLostPointerCapture
+onPointerEnter
+onPointerLeave
+onPointerOver
+onPointerOut
+
+Question 9 How to manage multiple languages in react 
+ React-Intl
+Internationalization is an important feature that is used to overcome the language barrier among people who use a particular software application
+
+Question 10 : What are the differences between controlled and uncontrolled components?
+Controlled component: In a controlled component, the value of the input element is controlled by React. We store the state of the input element inside the code, and by using event-based callbacks, any changes made to the input element will be reflected in the code as well.
+When a user enters data inside the input element of a controlled component, onChange function gets triggered and inside the code, we check whether the value entered is valid or invalid
+
+Uncontrolled component: In an uncontrolled component, the value of the input element is handled by the DOM itself. Input elements inside uncontrolled components work just like normal HTML input form elements.
+The state of the input element is handled by the DOM. Whenever the value of the input element is changed, event-based callbacks are not called. Basically, react does not perform any action when there are changes made to the input element.
+
+Question 11: What are the rules that must be followed while using React Hooks?
+There are 2 rules which must be followed while you code with Hooks:
+React Hooks must be called only at the top level. It is not allowed to call them inside the nested functions, loops, or conditions.
+It is allowed to call the Hooks only from the React Function Components
+
+Question 12: What is Difference between TypeScript and JavaScript:
+⦁	TypeScript is known as an Object-oriented programming language whereas JavaScript is a prototype based language.
+⦁	TypeScript has a feature known as Static typing but JavaScript does not support this feature.
+⦁	TypeScript supports Interfaces but JavaScript does not.
+
+

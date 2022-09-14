@@ -1,0 +1,311 @@
+Interview Questions-
+
+Ques1:- What is diffing algorithm?
+Ans:- React needs to use algorithms to find out how to efficiently update the UI to match the most recent tree. The diffing algorithms is generating the minimum number of operations to transform one tree into another. However, the algorithms have a complexity in the order of O(n3) where n is the number of elements in the tree.
+
+In this case, displaying 1000 elements would require in the order of one billion comparisons. This is far too expensive. Instead, React implements a heuristic O(n) algorithm based on two assumptions:
+
+Two elements of different types will produce different trees.
+The developer can hint at which child elements may be stable across different renders with a key prop.
+
+
+Ques2:- What is useState?
+Ans:- For useState()
+First, we have the functional component which did not supported state, in other words, a functional component is a stateless component.
+
+Ques3:- What is useEffect?
+Ans:- For useEffect()
+First, with stateless functional component, we didn't have component lifecycle hooks. In other words, whenever you want to use component lifecycle hooks, you should consider using class component.
+
+Now, we are able to use component lifecycle hooks without using class component. It is achieved by using useEffect. In other words, now whenever we want to use component lifecycle hooks, we already have two options either using class component or using Hooks with useEffect.
+
+Ques4:- What is reconciliation?
+Ans:- When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called reconciliation.
+
+Ques5:- What is ReactDOMServer?
+Ans:-The ReactDOMServer object enables you to render components to static markup (typically used on node server). This object is mainly used for server-side rendering (SSR). The following methods can be used in both the server and browser environments:
+
+renderToString()
+renderToStaticMarkup()
+For example, you generally run a Node-based web server like Express, Hapi, or Koa, and you call renderToString to render your root component to a string, which you then send as response.
+
+// using Express
+import { renderToString } from 'react-dom/server'
+import MyPage from './MyPage'
+
+app.get('/', (req, res) => {
+  res.write('<!DOCTYPE html><html><head><title>My Page</title></head><body>')
+  res.write('<div id="content">')
+  res.write(renderToString(<MyPage/>))
+  res.write('</div></body></html>')
+  res.end()
+})
+
+Ques6:- What is HOC?
+Ans:- A higher-order component (HOC) is a function that takes a component and returns a new component. Basically, it's a pattern that is derived from React's compositional nature.
+
+We call them pure components because they can accept any dynamically provided child component but they won't modify or copy any behavior from their input components.
+
+const EnhancedComponent = higherOrderComponent(WrappedComponent)
+HOC can be used for many use cases:
+
+Code reuse, logic and bootstrap abstraction.
+Render hijacking.
+State abstraction and manipulation.
+Props manipulation.
+
+Ques7:- What is stateful and Stateless?
+Ans:- STATEFUL COMPONENTS-If the behaviour of a component is dependent on the state of the component then it can be termed as stateful component. These stateful components are always class components and have a state that gets initialized in the constructor.
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { count: 0 }
+  }
+
+  render() {
+    // ...
+  }
+}
+
+STATELESS COMPONENTS- If the behaviour is independent of its state then it can be a stateless component. You can use either a function or a class for creating stateless components. But unless you need to use a lifecycle hook in your components, you should go for function components. There are a lot of benefits if you decide to use function components here; they are easy to write, understand, and test, a little faster, and you can avoid the this keyword altogether.
+
+
+
+Ques8:- What is use of ref?
+Ans:- The ref is used to return a reference to the element. They should be avoided in most cases, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
+
+Ques9:- Why fragment is better than div?
+Ans:- Below are the list of reasons,
+
+1. Fragments are a bit faster and use less memory by not creating an extra DOM node. This only has a real benefit on very large and deep trees.
+2. Some CSS mechanisms like Flexbox and CSS Grid have a special parent-child relationships, and adding divs in the middle makes it hard to keep the desired layout.
+3. The DOM Inspector is less cluttered.
+
+Ques10:- What is windowing technique?
+Ans:- Windowing is a technique that only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created. If your application renders long lists of data then this technique is recommended. Both react-window and react-virtualized are popular windowing libraries which provides several reusable components for displaying lists, grids, and tabular data.
+
+Ques11:- What is ReactDOM Package? 
+Ans:- The react-dom package provides DOM-specific methods that can be used at the top level of your app. Most of the components are not required to use this module. Some of the methods of this package are:
+
+render()
+hydrate()
+unmountComponentAtNode()
+findDOMNode()
+createPortal()
+
+Ques12:- What is CRA? What are its benefits?
+Ans:-The create-react-app CLI tool allows you to quickly create & run React applications with no configuration step.
+
+Let's create Todo App using CRA:
+
+# Installation
+$ npm install -g create-react-app
+
+# Create new project
+$ create-react-app todo-app
+$ cd todo-app
+
+# Build, test and run
+$ npm run build
+$ npm run test
+$ npm start
+It includes everything we need to build a React app:
+
+1.React, JSX, ES6, and Flow syntax support.
+2.Language extras beyond ES6 like the object spread operator.
+3.Autoprefixed CSS, so you don’t need -webkit- or other prefixes.
+4.A fast interactive unit test runner with built-in support for coverage reporting.
+5.A live development server that warns about common mistakes.
+6.A build script to bundle JS, CSS, and images for production, with hashes and sourcemaps.
+
+Ques13:- What is getSnapshotBeforeUpdate()?
+Ans:- The new getSnapshotBeforeUpdate() lifecycle method is called right before DOM updates. The return value from this method will be passed as the third parameter to componentDidUpdate().
+
+class MyComponent extends React.Component {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // ...
+  }
+}
+This lifecycle method along with componentDidUpdate() covers all the use cases of componentWillUpdate().
+
+Ques14:- What is ReactDOM server?
+Ans:-The ReactDOMServer object enables you to render components to static markup (typically used on node server). This object is mainly used for server-side rendering (SSR). The following methods can be used in both the server and browser environments:
+
+renderToString()
+renderToStaticMarkup()
+For example, you generally run a Node-based web server like Express, Hapi, or Koa, and you call renderToString to render your root component to a string, which you then send as response.
+
+// using Express
+import { renderToString } from 'react-dom/server'
+import MyPage from './MyPage'
+
+app.get('/', (req, res) => {
+  res.write('<!DOCTYPE html><html><head><title>My Page</title></head><body>')
+  res.write('<div id="content">')
+  res.write(renderToString(<MyPage/>))
+  res.write('</div></body></html>')
+  res.end()
+})
+
+Ques15:- What is renderer Testing?
+Ans:-This package provides a renderer that can be used to render components to pure JavaScript objects, without depending on the DOM or a native mobile environment. This package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a ReactDOM or React Native without using a browser or jsdom.
+
+import TestRenderer from 'react-test-renderer'
+
+const Link = ({page, children}) => <a href={page}>{children}</a>
+
+const testRenderer = TestRenderer.create(
+  <Link page={'https://www.facebook.com/'}>{'Facebook'}</Link>
+)
+
+console.log(testRenderer.toJSON())
+// {
+//   type: 'a',
+//   props: { href: 'https://www.facebook.com/' },
+//   children: [ 'Facebook' ]
+// }
+
+Ques16:- Is it possible to use react without rendering HTML?
+Ans:-It is possible with latest version (>=16.2). Below are the possible options:
+
+render() {
+  return false
+}
+render() {
+  return null
+}
+render() {
+  return []
+}
+render() {
+  return <React.Fragment></React.Fragment>
+}
+render() {
+  return <></>
+}
+Returning undefined won't work.
+
+Ques17:- How can we create different routes for guestuser and LoggedIn user? Conditional Question
+Ans:- There are various approaches for this.
+
+Ques18:- What are the approaches to include polyfills in your create-react-app?
+Ans:- There are approaches to include polyfills in create-react-app,
+
+Manual import from core-js:
+
+Create a file called (something like) polyfills.js and import it into root index.js file. Run npm install core-js or yarn add core-js and import your specific required features.
+
+import 'core-js/fn/array/find'
+import 'core-js/fn/array/includes'
+import 'core-js/fn/number/is-nan'
+Using Polyfill service:
+
+Use the polyfill.io CDN to retrieve custom, browser-specific polyfills by adding this line to index.html:
+
+<script src='https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.includes'></script>
+In the above script we had to explicitly request the Array.prototype.includes feature as it is not included in the default feature set.
+
+Ques19:- Why should we not update state directly? With condition.
+Ans:- If you try to update the state directly then it won't re-render the component.
+
+//Wrong
+this.state.message = 'Hello world'
+Instead use setState() method. It schedules an update to a component's state object. When state changes, the component responds by re-rendering.
+
+//Correct
+this.setState({ message: 'Hello World' })
+
+Ques20:- Why we use class Component over Function Component?
+Ans:- If the component needs state or lifecycle methods then use class component otherwise use function component. However, from React 16.8 with the addition of Hooks, you could use state , lifecycle methods and other features that were only available in class component right in your function component. *So, it is always recommended to use Function components, unless you need a React functionality whose Function component equivalent is not present yet, like Error Boundaries
+
+Ques21:- Differnce between Asyn/await and promise.
+Ans:- Promise is an object representing intermediate state of operation which is guaranteed to complete its execution at some point in future. Async/Await is a syntactic sugar for promises, a wrapper making the code execute more synchronously. 2. Promise has 3 states – resolved, rejected and pending.
+
+Ques22:- How to pass number of components in a single render?
+Ans:-You should be passing the numbers via curly braces({}) where as strings in quotes
+
+   React.render(<User age={30} department={"IT"} />, document.getElementById('container'));
+
+Ques23:- What findDOMNode() do?
+Ans:-It is preferred to use callback refs over findDOMNode() API. Because findDOMNode() prevents certain improvements in React in the future.
+
+The legacy approach of using findDOMNode:
+
+class MyComponent extends Component {
+  componentDidMount() {
+    findDOMNode(this).scrollIntoView()
+  }
+
+  render() {
+    return <div />
+  }
+}
+The recommended approach is:
+
+class MyComponent extends Component {
+  constructor(props){
+    super(props);
+    this.node = createRef();
+  }
+  componentDidMount() {
+    this.node.current.scrollIntoView();
+  }
+
+  render() {
+    return <div ref={this.node} />
+  }
+}
+
+Ques24:- What is class Component? Everything about class component in detail.
+Ans:-The component lifecycle has three distinct lifecycle phases:
+
+Mounting: The component is ready to mount in the browser DOM. This phase covers initialization from constructor(), getDerivedStateFromProps(), render(), and componentDidMount() lifecycle methods.
+
+Updating: In this phase, the component gets updated in two ways, sending the new props and updating the state either from setState() or forceUpdate(). This phase covers getDerivedStateFromProps(), shouldComponentUpdate(), render(), getSnapshotBeforeUpdate() and componentDidUpdate() lifecycle methods.
+
+Unmounting: In this last phase, the component is not needed and gets unmounted from the browser DOM. This phase includes componentWillUnmount() lifecycle method.
+
+It's worth mentioning that React internally has a concept of phases when applying changes to the DOM. They are separated as follows
+
+Render The component will render without any side effects. This applies to Pure components and in this phase, React can pause, abort, or restart the render.
+
+Pre-commit Before the component actually applies the changes to the DOM, there is a moment that allows React to read from the DOM through the getSnapshotBeforeUpdate().
+
+Commit React works with the DOM and executes the final lifecycles respectively componentDidMount() for mounting, componentDidUpdate() for updating, and componentWillUnmount() for unmounting.
+
+Ques25:- What are render props?
+Ans:- Render Props is a simple technique for sharing code between components using a prop whose value is a function. The below component uses render prop which returns a React element.
+
+<DataProvider render={data => (
+  <h1>{`Hello ${data.target}`}</h1>
+)}/>
+Libraries such as React Router and DownShift are using this pattern.
+
+Ques26:-Conditional question on Redux Flow ?
+Ans:-
+
+Ques27:- What are react Fragments?
+Ans:- It's a common pattern in React which is used for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+
+render() {
+  return (
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  )
+}
+There is also a shorter syntax, but it's not supported in many tools:
+
+render() {
+  return (
+    <>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </>
+  )
+}
+
