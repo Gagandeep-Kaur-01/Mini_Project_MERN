@@ -1,4 +1,5 @@
-import BooksDetail  from "./Components/booksDetail";
+import { connect } from "react-redux";
+import { BooksDetail }  from "./Components/booksDetail";
 
 function App() {
   return (
@@ -9,4 +10,5 @@ function App() {
   );
 }
 
-export default App;
+export default connect()(App);
+
