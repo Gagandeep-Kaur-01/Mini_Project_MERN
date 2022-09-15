@@ -3,8 +3,11 @@ import "./homepage.css";
 
 const Homepage = () => {
     return(
-        <div>
-            Homepage
+        <div className="homepage">
+            <h1>Homepage</h1>
+            <div className="button">
+                Logout
+            </div>
         </div>
     )
 }
