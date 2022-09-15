@@ -1,10 +1,16 @@
 import { connect } from "react-redux";
 import { BooksDetail }  from "./Components/booksDetail";
+import Homepage from "./Components/Homepage/homepage";
+import Login from "./Components/Login/login";
+import Register from "./Components/Register/register";
 
 function App() {
   return (
     <div className="App">
-      <BooksDetail />
+      <Homepage />
+      <Login />
+      <Register />
+      {/* <BooksDetail /> */}
      
     </div>
   );
