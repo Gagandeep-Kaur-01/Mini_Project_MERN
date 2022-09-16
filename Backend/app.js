@@ -1,24 +1,39 @@
-require("dotenv").config();
+// require("dotenv").config();
 
-const express = require('express')
-const mongoose = require('mongoose')
+// const express = require('express')
+// const mongoose = require('mongoose')
+// const url = 'mongodb://localhost/libraryManagement'
+// const cors = require('cors')
+
+
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose'
+import routes from './routes/index.js';
+
 const url = 'mongodb://localhost/libraryManagement'
-const cors = require('cors')
-const app = express()
 
+const app = express()
+app.use(express.json())
+app.use(express.urlencoded())
 app.use(cors())
 
-mongoose.connect(url, {useNewUrlParser:true})
+
+mongoose.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 const con = mongoose.connection
 
 con.on('open', () => {
     console.log('---connected---')
 })
 
-app.use(express.json())
 
-const alienRouter = require('./routes/books')
-app.use('/books', alienRouter)
+// const alienRouter = require('./routes/books')
+// app.use('/books', alienRouter)
+
+app.use('/routes', routes);
 
 const PORT = process.env.APP_PORT || 8080;
 
