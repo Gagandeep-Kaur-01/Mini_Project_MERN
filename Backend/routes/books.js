@@ -1,15 +1,10 @@
 // const express = require('express')
-import express from 'express';
 // const router = express.Router()
 // const Book = require('../models')
 
-// import Book from '../models';
 
+import express from 'express';
 import models, { connectDb } from '../models/index.js';
-// import book from ''
-
-console.log("----book---", models)
-
 
 const app = express()
 
