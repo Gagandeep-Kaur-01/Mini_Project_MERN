@@ -1,6 +1,6 @@
 import books from "./books.js";
 import login from "./login.js";
-import register from "./register.js";
+import registerLogin from "./registerLogin.js";
 
 
-export default [books, login, register];
+export default [books, registerLogin];
