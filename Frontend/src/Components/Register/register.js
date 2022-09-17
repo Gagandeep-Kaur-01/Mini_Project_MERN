@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as actions from "../../actions"
+
 import "./register.css";
 
 const Register = () => {
+
+    const dispatch = useDispatch()
     
     const [ user, setUser] = useState({
         name: "",
@@ -18,6 +23,17 @@ const Register = () => {
         })
     }
 
+    const handleRegister = () => {
+        const { name, email, password, reEnterPassword } = user;
+        
+        //validation
+        if(name && email && password && (password === reEnterPassword)) {
+            dispatch(actions.registerNewUser(user)) 
+        } else {
+            alert("---Invalid Input----")
+        }        
+    }
+
     return(
         <div className="register">
             {console.log("----user----", user)}
@@ -26,7 +42,7 @@ const Register = () => {
             <input type="text" name="email" value={user.email} placeholder="Your Email" onChange = {handleChange}></input>
             <input type="password" name="password" value={user.password} placeholder="Your Password" onChange = {handleChange}></input>
             <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange = {handleChange}></input>
-            <div className="button">Register</div>
+            <div className="button" onClick= {handleRegister}>Register</div>
             <div>or</div>
             <div className="button">Login</div>
         </div>
