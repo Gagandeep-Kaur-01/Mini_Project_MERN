@@ -6,10 +6,12 @@
 import express from 'express';
 import models, { connectDb } from '../models/index.js';
 
+const Book  = models.Book;
+
 const app = express()
 
 
-app.get('/', async(req,res) => {
+app.get('/books', async(req,res) => {
     try{
            const books = await Book.find()
            res.json(books)
@@ -18,7 +20,7 @@ app.get('/', async(req,res) => {
     }
 })
 
-app.get('/:id', async(req,res) => {
+app.get('/book/:id', async(req,res) => {
     try{
            const book = await Book.findById(req.params.id)
            res.json(book)
@@ -28,7 +30,7 @@ app.get('/:id', async(req,res) => {
 })
 
 
-app.post('/', async(req,res) => {
+app.post('/book', async(req,res) => {
     const book = new Book({
         name: req.body.name,
         tech: req.body.tech,
@@ -43,7 +45,7 @@ app.post('/', async(req,res) => {
     }
 })
 
-app.patch('/:id',async(req,res)=> {
+app.patch('/book/:id',async(req,res)=> {
     try{
         const book = await Book.findById(req.params.id) 
         book.sub = req.body.sub
