@@ -36,7 +36,7 @@ con.on('open', () => {
 // const alienRouter = require('./routes/books')
 // app.use('/books', alienRouter)
 
-app.use('/routes', routes);
+app.use('/api', routes);
 
 const PORT = process.env.APP_PORT || 8080;
 
