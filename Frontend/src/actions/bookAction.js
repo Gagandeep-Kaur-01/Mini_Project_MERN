@@ -9,9 +9,8 @@ export const getBookDetailSucess = (res) => ({
 export const getAllBooksDetail = () => {
     return (dispatch) => {
         axios
-        .get("http://localhost:5000/books/")
+        .get("http://localhost:5000/api/books/")
         .then(response => {
-            console.log("-----response-----", response)
         dispatch(getBookDetailSucess(response?.data))
     })
     .catch((err) => {
