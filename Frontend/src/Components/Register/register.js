@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../../actions"
+import { useNavigate } from 'react-router-dom';
+import { history1 } from '../../helpers/history.js';
+
+import { createBrowserHistory } from 'history';
+
 
 import "./register.css";
 
+
+
 const Register = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const history = createBrowserHistory();
     
     const [ user, setUser] = useState({
         name: "",
@@ -28,7 +37,9 @@ const Register = () => {
         
         //validation
         if(name && email && password && (password === reEnterPassword)) {
-            dispatch(actions.registerNewUser(user)) 
+            dispatch(actions.registerNewUser(user, () => {
+                navigate('/login')
+            })) 
         } else {
             alert("---Invalid Input----")
         }        
@@ -75,7 +86,10 @@ const Register = () => {
                 or
             </div>
             <div 
-                className="button">
+                className="button"
+                onClick={() => navigate('/login')}
+                // onClick = {() => {history.push("/login")}}
+                >
                     Login
             </div>
         </div>

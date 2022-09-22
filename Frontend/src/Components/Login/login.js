@@ -1,14 +1,24 @@
 import React, {useState} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../actions"
 import "./login.css";
+import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {        
 
-    const dispatch = useDispatch()
+    const {setLoginUser} = props
+
+    const {userDetail} = useSelector((state) => ({        
+        userDetail: state?.user?.userDetail
+    }))
+    
+    const dispatch = useDispatch();
+    // const history = useHistory();
+    const navigate = useNavigate();
 
     const [ user, setUser] = useState({
-        email: "abc@gmail.com",
+        email: "",
         password: "",
     })
 
@@ -22,12 +32,14 @@ const Login = () => {
 
     const handleLogin = () => {
         const { email, password } = user;
-        dispatch(actions.LoginUser(user))
+        dispatch(actions.LoginUser(user, () => {
+            setLoginUser(userDetail);
+            navigate('/'); 
+        }));    
     }
 
     return(
         <div className="login">
-            {console.log("--login page--", user)}
             <h1>Login</h1>
             <input 
                 type="text" 
@@ -50,7 +62,9 @@ const Login = () => {
             <div> 
                 or
             </div>
-            <div className="button">
+            <div 
+                className="button"
+                onClick={() => navigate('/register')}>
                 Register
             </div>
         </div>

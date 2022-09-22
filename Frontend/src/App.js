@@ -1,17 +1,37 @@
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { BooksDetail }  from "./Components/booksDetail";
 import Homepage from "./Components/Homepage/homepage";
 import Login from "./Components/Login/login";
 import Register from "./Components/Register/register";
-import "./App.css"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
+
+  const [user, setLoginUser] = useState({})
   return (
     <div className="App">
-      {/* <Homepage /> */}      
-        <Login />
-        {/* <Register /> */}
-        {/* <BooksDetail />  */}  
+      <Router>
+        <Routes>
+          <Route 
+            exact path="/" 
+            element = 
+            {
+              user && user._id ? 
+                <Homepage />  : 
+                <Login setLoginUser ={setLoginUser} /> 
+          }  />
+          
+          <Route 
+            path="/login" 
+            element = {
+              <Login setLoginUser={setLoginUser}/> 
+            } 
+          />
+          <Route path="/register" element={<Register /> } />
+        </Routes>  
+      </Router>   
     </div>
   );
 }
