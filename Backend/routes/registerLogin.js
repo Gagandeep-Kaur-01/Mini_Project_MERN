@@ -31,7 +31,7 @@ app.post("/register", async(req, res) => {
                     res.send("--error----", err)
                 }
                 else {
-                    res.send({ message: "----Successfully registered----"})
+                    res.send({ message: "Successfully Registered, Please login now"})
                 }
             })
         }
