@@ -19,7 +19,7 @@ function App() {
             element = 
             {
               user && user._id ? 
-                <Homepage />  : 
+                <Homepage setLoginUser = {setLoginUser}/>  : 
                 <Login setLoginUser ={setLoginUser} /> 
           }  />
           
