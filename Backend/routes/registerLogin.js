@@ -1,12 +1,19 @@
 import express from 'express';
+import bcrypt from 'bcrypt';
 import models, { connectDb } from '../models/index.js';
 
 const User  = models.User;
+const saltRounds = 10;
 
 const app = express();
 
 app.post("/register", async(req, res) => {
     const { name, email, password } = req.body;
+
+    let encryptedPassword = bcrypt.hashSync(password, saltRounds);
+    console.log("----encryptedPassword------", encryptedPassword);
+
+
     // to check whether user already registered or not
     User.findOne({
         email: email
@@ -16,8 +23,8 @@ app.post("/register", async(req, res) => {
         } else {
             const user = new User({
                 name,
-                email,
-                password
+                email,  
+                password : encryptedPassword                             
             })
             // try {
             //     const a1 =  await user.save() 
