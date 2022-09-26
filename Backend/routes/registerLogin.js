@@ -1,5 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
+import { successAction, failAction } from './../utilities/response.js';
+import Message from './../utilities/messages.js';
 import models, { connectDb } from '../models/index.js';
 
 const User  = models.User;
@@ -51,16 +53,17 @@ app.post("/login", async(req, res) => {
         email: email
     }, 
     (err, user) => {
+        let pwdVerify = bcrypt.compareSync(password, user.password);
         if(user){
-            if(password === user.password) {
-                res.send({message: "Login successfully", user})
+            if(pwdVerify) {
+                return res.status(200).json(successAction(user, Message.loginSuccessfull));
             } 
             else {
-                res.send({message: "Password didn't match"})
+                return res.status(400).json(failAction(Message.passwordInvalid));
             }
         }
         else {
-            res.send({message : "User not registered" })
+            return res.status(400).json(failAction(Message.userNotExists));
         }
     })
 })
