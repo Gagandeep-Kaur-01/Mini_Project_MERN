@@ -4,6 +4,9 @@ import * as actions from "../../actions"
 import "./login.css";
 import { useHistory } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Login = (props) => {        
 
@@ -35,7 +38,7 @@ const Login = (props) => {
         dispatch(actions.LoginUser(user, () => {
             setLoginUser(userDetail);
             navigate('/'); 
-        }));    
+        }));
     }
 
     return(
@@ -55,10 +58,17 @@ const Login = (props) => {
                 placeholder="Enter your Password" 
                 onChange={handleChange}>                    
             </input>
-            <div className="button"
+            {/* <div className="button"
                 onClick = {handleLogin}>
                 Login
-            </div>
+            </div> */}
+            <Button
+                type="primary" 
+                onClick = {() => handleLogin()}
+            >
+                Login
+            </Button> 
+            <ToastContainer />   
             <div> 
                 or
             </div>
