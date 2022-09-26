@@ -10,6 +10,7 @@ import "./App.css";
 function App() {
 
   const [user, setLoginUser] = useState({})
+
   return (
     <div className="App">
       <Router>
@@ -19,8 +20,8 @@ function App() {
             element = 
             {
               user && user._id ? 
-                <Homepage setLoginUser = {setLoginUser}/>  : 
-                <Login setLoginUser ={setLoginUser} /> 
+                <Homepage setLoginUser = {setLoginUser} />  : 
+                <Login setLoginUser = {setLoginUser} /> 
           }  />
           
           <Route 
